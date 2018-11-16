@@ -1,16 +1,15 @@
 package sort;
 
+import java.util.Arrays;
+
 public class MySort {
 
     public static void main(String[] args) {
-        int[] arr = {12, 43, 2, 5, 21};
-        mySort(arr);
+        Integer[] arr = {12, 43, 2, 5, 21,9};
+        BubbleSort.mergeSort(arr,1,5);
+        System.out.println(Arrays.toString(arr));
     }
 
 
-    public static void mySort(int[] arr){
-        int size = arr.length;
 
-
-    }
 }
