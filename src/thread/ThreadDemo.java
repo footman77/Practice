@@ -14,6 +14,7 @@ public class ThreadDemo {
         Thread thread01 = new Thread(ticket);
         Thread thread02 = new Thread(ticket);
         Thread thread03 = new Thread(ticket);
+        Thread.yield();
         thread01.start();
         thread02.start();
         thread03.start();

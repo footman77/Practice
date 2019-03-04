@@ -18,11 +18,17 @@ public class Ticket implements Runnable{
     public void run() {
         while (true){
             lock.lock();
-            if(ticket > 0){
+            try {
+                if(ticket > 0){
+
                     System.out.println(Thread.currentThread().getName() + "当前正在卖第" + ticket + "票");
                     ticket--;
+                }
+            }finally {
+                lock.unlock();
+
             }
-            lock.unlock();
+
         }
 
     }

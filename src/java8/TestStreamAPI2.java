@@ -17,7 +17,7 @@ public class TestStreamAPI2 {
 
     //1. 创建 Stream
     @Test
-    public void test1(){
+    public void test1() {
         //1. Collection 提供了两个方法  stream() 与 parallelStream()
         List<String> list = new ArrayList<>();
         Stream<String> stream = list.stream(); //获取一个顺序流
@@ -28,7 +28,7 @@ public class TestStreamAPI2 {
         Stream<Integer> stream1 = Arrays.stream(nums);
 
         //3. 通过 Stream 类中静态方法 of()
-        Stream<Integer> stream2 = Stream.of(1,2,3,4,5,6);
+        Stream<Integer> stream2 = Stream.of(1, 2, 3, 4, 5, 6);
 
         //4. 创建无限流
         //迭代
@@ -62,7 +62,7 @@ public class TestStreamAPI2 {
 
     //内部迭代：迭代操作 Stream API 内部完成
     @Test
-    public void test2(){
+    public void test2() {
         //所有的中间操作不会做任何的处理
         Stream<Employee> stream = emps.stream()
                 .filter((e) -> {
@@ -76,16 +76,16 @@ public class TestStreamAPI2 {
 
     //外部迭代
     @Test
-    public void test3(){
+    public void test3() {
         Iterator<Employee> it = emps.iterator();
 
-        while(it.hasNext()){
+        while (it.hasNext()) {
             System.out.println(it.next());
         }
     }
 
     @Test
-    public void test4(){
+    public void test4() {
         emps.stream()
                 .filter((e) -> {
                     System.out.println("短路！"); // &&  ||
@@ -95,7 +95,7 @@ public class TestStreamAPI2 {
     }
 
     @Test
-    public void test5(){
+    public void test5() {
         emps.parallelStream()
                 .filter((e) -> e.getSalary() >= 5000)
                 .skip(2)
@@ -103,7 +103,7 @@ public class TestStreamAPI2 {
     }
 
     @Test
-    public void test6(){
+    public void test6() {
         emps.stream()
                 .distinct()
                 .forEach(System.out::println);
@@ -115,8 +115,8 @@ public class TestStreamAPI2 {
 		flatMap——接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流
 	 */
 
-	@Test
-    public void test7(){
+    @Test
+    public void test7() {
         List<String> list = Arrays.asList("aaa", "bbb", "cccc", "ddd");
         list.stream().map((x) -> x.toUpperCase())
                 .forEach(System.out::println);
@@ -137,14 +137,13 @@ public class TestStreamAPI2 {
     }
 
 
-
-	public static Stream<Character> filterCharacter(String string){
+    public static Stream<Character> filterCharacter(String string) {
         List<Character> list = new ArrayList<>();
-        for(Character ch : string.toCharArray()){
+        for (Character ch : string.toCharArray()) {
             list.add(ch);
         }
         return list.stream();
-	}
+    }
 
 
     /*
@@ -152,7 +151,7 @@ public class TestStreamAPI2 {
         sorted(Comparator com)——定制排序(Comparator)
      */
     @Test
-    public void test8(){
+    public void test8() {
         emps.stream()
                 .map(Employee::getName)
                 .sorted()
@@ -162,9 +161,9 @@ public class TestStreamAPI2 {
 
         emps.stream()
                 .sorted((x, y) -> {
-                    if(x.getAge() == y.getAge()){
+                    if (x.getAge() == y.getAge()) {
                         return x.getName().compareTo(y.getName());
-                    }else{
+                    } else {
                         return Integer.compare(x.getAge(), y.getAge());
                     }
                 }).forEach(System.out::println);
